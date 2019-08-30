@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SearchFilter</string>
+    <string-array name="scoreStatus">
+        <item>是否提交</item>
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="inspectType">
+        <item>筛选类型</item>
+        <item>筛选类型1</item>
+        <item>筛选类型2</item>
+        <item>筛选类型3</item>
+        <item>筛选类型4</item>
+    </string-array>
+</resources>

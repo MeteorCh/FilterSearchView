@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dialogTitleTextSize">20dp</dimen>
+    <dimen name="smallTextSize">12dp</dimen>
+    <dimen name="middleTextSize">14dp</dimen>
+    <dimen name="normalTextSize">16dp</dimen>
+</resources>
