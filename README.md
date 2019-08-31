@@ -23,6 +23,9 @@
    * 参数4：当前的类名：由于一个程序中可能会有多个搜索对话框，每个对话框应该单独记录搜索历史记录。故传入当前类，用来识别是哪个界面的搜索记录。  
 ## 注意
 &#8194;&#8194;&#8194;&#8194;因为筛选的历史条件是通过Litepal来保存的，所以使用的时候，记得引用Litepal，在Application中初始化，在assets的litepal.xml中对类进行声明。具体见我的程序，这里不再赘述。  
-## 下载地址
-&#8194;&#8194;&#8194;&#8194;最后，我把代码上传到了gitHub上了，因为这个模块自定义的东西相对还是比较多，上传供大家compile的还是不太方便，就不上传了。下载地址为：[https://github.com/MeteorCh/FilterSearchView.git](https://github.com/MeteorCh/FilterSearchView.git)
+## 修改记录
+* **8.31号修改记录**
+&#8194;&#8194;&#8194;&#8194;实现沉浸式式界面，即弹出搜索界面时，状态栏颜色和搜索框的背景一致，且状态栏文字的颜色变为黑色（以前状态栏的颜色是半透明的黑色，不是很好看）。如下图所示：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831213035533.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzA5MjQ5,size_16,color_FFFFFF,t_70)
+   
    
