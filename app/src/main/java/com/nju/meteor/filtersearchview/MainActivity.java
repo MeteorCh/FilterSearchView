@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                             });
                     filterDialog.show();
                 }
-            },MainActivity.class.getName());
+            },MainActivity.class);
             dialog.show();
         }
         return super.onOptionsItemSelected(item);

@@ -3,12 +3,15 @@ package com.nju.meteor.filtersearchview.SearchView;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -20,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import com.nju.meteor.filtersearchview.R;
 
 import org.litepal.LitePal;
@@ -28,6 +30,8 @@ import org.litepal.LitePal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 
 public class SearchDialog extends Dialog {
     private ArrayList<String> mPreferList;
@@ -42,15 +46,15 @@ public class SearchDialog extends Dialog {
     }
 
 
-    public SearchDialog(@NonNull final Context context, IStartSearchListener listener, final View.OnClickListener clickListener, Class recordClass) {
+    public SearchDialog(@NonNull final Context context, IStartSearchListener listener, View.OnClickListener clickListener, Class recordType) {
         super(context, R.style.MaterialSearch);
         this.startSearchListener=listener;
-        this.recordType=recordClass;
+        this.recordType=recordType;
         Activity activity=(Activity)context;
         View view =activity.getLayoutInflater().inflate(R.layout.widget_search_view_layout, null);
         ImageView imgToolBack = (ImageView) view.findViewById(R.id.img_tool_back);
         edtToolSearch = (EditText) view.findViewById(R.id.edt_tool_search);
-        final ImageView imgToolMic = (ImageView) view.findViewById(R.id.img_tool_mic);
+        ImageView imgToolMic = (ImageView) view.findViewById(R.id.img_tool_mic);
         final ListView listSearch = (ListView) view.findViewById(R.id.list_search);
         final TextView txtEmpty = (TextView) view.findViewById(R.id.txt_empty);
         View outsideView=view.findViewById(R.id.outside);
@@ -60,8 +64,15 @@ public class SearchDialog extends Dialog {
                 dismiss();
             }
         });
+        View statusBg=view.findViewById(R.id.status_bar_bg);
+        statusBg.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,UIUtility.getStatusBarHeight(getContext())));
         UIUtility.setListViewHeightBasedOnChildren(listSearch);
         setContentView(view);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(Color.WHITE);
+            getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//solves issue with statusbar
+        }
         getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         getWindow().setGravity(Gravity.BOTTOM);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
